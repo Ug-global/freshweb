@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    </script>
+    <meta charset="UTF-8">
+    <title>my professional site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=inter:wgt@400;700&disply=swap"rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">U.G <SPan>GLOBAL</SPan></U></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">home</a></li>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#services">services</a></li>
+                    <li><a href="#contact">contact</a></li>
+                    <li><button id="theme-toggle" class="theme-btn">🌙</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+            <h1>Building Digital Excellence</h1>
+            <p>specializing in Web Design, Database management, and more</p>
+            <a href="#contact" class="btn">Get Started</a>
+
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>about us</h2>
+            <p>web design, database management, and more...</p>
+        </section>
+           
+        <section id="services" class="services-section">
+             <h2 class="section-title">What I Offer</h2>
+            <div class="service-container">
+                <div class="service-card">
+                    <div class="icon">💻</div>
+                    <h3>Web Design</h3>
+                    <p>Creating Modern, responsive websites that look great on any device.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🖨️</div>
+                    <h3>Database management</h3>
+                    <p>Expertly handling data with SQL and FLASK to keep your info safe and organized</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🚀</div>
+                    <h3>SEO Optrimization</h3>
+                    <p>Improving site speed and visibility so people can actually find your business.</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>contact us</h2>
+           <form id="contact-form" action="/submit_contact" method="POST">
+            <div id="form-error"></div>
+           <input type="text" id="name-input" name="name-input" placeholder="Your Name"><br>
+           <textarea id="query-input" name="query-input" placeholder="Your message"></textarea><br>
+           <button type="submit">send message</button>
+           </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 U.g Global. All right reserved.</p>
+            <div class="socials">
+                <a href="#">linkedin</a>
+                <a href="#">Twitter</a>
+                <a href="#">GirHub</a>
+
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body style="padding: 50px; background: #f4f4f4;">
+    <h1>message log</h1>
+    <table border="1" style="width: 100%; background: white; border-collapse: collapse;">
+        <tr style="background: #333; color: white;">
+            <th>ID</th>
+            <th>Name</th>
+            <th>message</th>
+        </tr>
+        {% for msg in messages %}
+        <tr>
+            <td>{{ msg.id }}</td>
+             <td>{{ msg.name }}</td>
+              <td>{{ msg.message }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to home</a>
+    
+</body>
+</html>
