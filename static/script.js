@@ -1,40 +1,34 @@
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e){
-        e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    const body = document.body;
 
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
+    // Function to update the icon based on the mode
+    const updateIcon = () => {
+        if (body.classList.contains('dark-mode')) {
+            toggleBtn.textContent = '☀️'; // Show Sun when in Dark Mode (to go back to light)
+        } else {
+            toggleBtn.textContent = '🌙'; // Show Moon when in Light Mode (to go to dark)
+        }
+    };
 
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 70, 
-                behavior: 'smooth'
-            });
+    // 1. Check saved theme on load
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+    }
+    updateIcon(); // Set the correct icon immediately
+
+    // 2. Handle the click
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        // Save choice
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
         }
 
+        updateIcon(); // Swap the icon after the click
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('theme-toggle');
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        if(toggleBtnt) toggleBtn.textContentn = savedTheme === 'dark' ? '☀️' : '🌙';
-    }
-
-    if (toggleBtn) {
-        toggleBtn,addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            document.documentElement.setAttribute('data-theme', newTheme);
-
-            localStorage.saveitem('theme', newTheme);
-
-            toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            toggleBtn.textContent = newTheme === 'light' ? '☀️' : '🌙';
-        });
-    }
-})
