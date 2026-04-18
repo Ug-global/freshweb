@@ -61,10 +61,18 @@ def submit():
 
     return f"<h1>Thank you {name}!</h1><p>Your message has been saved and I've been notified.</p>"
 
-@app.route('/admin')
-def admin():
-    all_messages = contact.query.all()
-    return render_template('admin.html', messages=all_messages)
+@app.route('/admin/<secret_key>')
+def admin(secret_key):
+    # CHOOSE YOUR OWN SECRET PASSWORD HERE
+    my_password = "ugo_global_2026"
+
+    if secret_key == my_password:
+        all_messages = contact.query.all()
+        return render_template('admin.html', messages=all_messages)
+    else:
+        return "<h1>Access Denied</h1><p>You do not have permission to view this page.</p>", 403
+
+
 
 if __name__ =='__main__':
    import os
