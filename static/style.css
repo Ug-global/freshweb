@@ -139,3 +139,34 @@ body {
 }
 
 #dark-mode-toggle:active scale(0.9);
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.service-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    text-align: left;
+    transition: var(--transition);
+}
+
+.service-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .service-card {
+    border-color: #333;
+}
+
