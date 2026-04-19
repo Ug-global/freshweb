@@ -59,7 +59,8 @@ def submit():
     except Exception as e:
         print(f"Email error: {e}")
 
-    return f"<h1>Thank you {name}!</h1><p>Your message has been saved and I've been notified.</p>"
+    from flask import redirect
+    return redirect('/#contact')
 
 @app.route('/admin/<secret_key>')
 def admin(secret_key):
